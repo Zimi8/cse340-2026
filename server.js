@@ -1,3 +1,4 @@
+import { getAllProjects } from './src/models/projects.js';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -25,12 +26,12 @@ app.get('/organizations', async (req, res) => {
     console.log(organizations);
     
     const title = 'Our Partner Organizations';
-    // AQUÍ ESTÁ LA CORRECCIÓN: Se agregó ", organizations" para pasarlo a la vista
     res.render('organizations', { title, organizations });
 });
 
-app.get('/projects', (req, res) => {
-    res.render('projects', { title: 'Our Projects' });
+app.get('/projects', async (req, res) => {
+    const projects = await getAllProjects();
+    res.render('projects', { title: 'Our Projects', projects });
 });
 
 app.get('/categories', (req, res) => {
