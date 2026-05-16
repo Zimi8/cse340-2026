@@ -25,7 +25,8 @@ app.get('/organizations', async (req, res) => {
     console.log(organizations);
     
     const title = 'Our Partner Organizations';
-    res.render('organizations', { title });
+    // AQUÍ ESTÁ LA CORRECCIÓN: Se agregó ", organizations" para pasarlo a la vista
+    res.render('organizations', { title, organizations });
 });
 
 app.get('/projects', (req, res) => {
